@@ -1,8 +1,14 @@
 /*
  * Create a list that holds all of your cards
  */
+var cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o',
+            'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube',
+            'fa-leaf', 'fa-leaf', 'fa-bycicle', 'fa-bycicle', 'fa-bomb', 'fa-bomb'
+            ];
 
-
+function generateCard(card){
+    return `<li class="card" data-card="><i class=fa ${card}"> </i> </li>`;
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -25,11 +31,48 @@ function shuffle(array) {
     return array;
 }
 
+function initGame() {
+    var deck = document.querySelector('.deck');
+    var cardHTML = shuffle(cards).map(function(card) {
+        return generateCard;
+    });
+    deck.innerHTML = cardHTML.join('');
+}
+
 var allCards = document.querySelectorAll('.card');
+var openCards = [];
+var moves = 0;
+
+initGame();
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function() {
-        card.classList.add('open', 'show');
+        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+            openCards.push(card);
+            card.classList.add('open', 'show');
+
+            if (openCards.length == 2) {
+                if (openCards[0].dataset.card == openCards[1].dataset.card) {
+                    openCards[0].classList.add('match');
+                    openCards[0].classList.add('open');
+                    openCards[0].classList.add('show');
+                    
+                    openCards[1].classList.add('match');
+                    openCards[1].classList.add('open');
+                    openCards[1].classList.add('show');
+
+                    openCards = [];
+                } else {
+                    setTimeout(function() {
+                        openCards.forEach(function(card) {
+                            card.classList.remove('open', 'show');
+                        });
+                    openCards = [];
+                    }, 1000);
+                }
+                moves += 1;
+            }
+        }
     });
 });
 
