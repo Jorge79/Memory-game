@@ -33,9 +33,13 @@ function shuffle(array) {
 
 function initGame() {
     var deck = document.querySelector('.deck');
+
     var cardHTML = shuffle(cards).map(function(card) {
         return generateCard;
     });
+    moves = 0;
+    moveCounter.innerText = moves;
+
     deck.innerHTML = cardHTML.join('');
 }
 
@@ -71,6 +75,7 @@ allCards.forEach(function(card) {
                     }, 1000);
                 }
                 moves += 1;
+                moveCounter.innerText = moves;
             }
         }
     });
