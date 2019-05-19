@@ -43,11 +43,11 @@ function initGame() {
     deck.innerHTML = cardHTML.join('');
 }
 
+initGame();
+
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
-
-initGame();
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function() {
