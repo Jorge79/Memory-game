@@ -49,6 +49,26 @@ var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
 
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+setInterval(setTime, 1000);
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
 allCards.forEach(function(card) {
     card.addEventListener('click', function() {
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
