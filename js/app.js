@@ -38,8 +38,6 @@ function initGame() {
         return generateCard();
     });
     moves = 0;
-    //moveCounter.innerText = moves;
-
     deck.innerHTML = cardHTML.join('');
 }
 
@@ -47,7 +45,7 @@ initGame();
 
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
-var moves = 0;
+var moves = document.getElementById("moves");
 
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
@@ -96,7 +94,7 @@ allCards.forEach(function(card) {
                     }, 1000);
                 }
                 moves += 1;
-                moveCounter.innerHTML = moves;
+                moves.innerHTML= moves;
             }
         }
     });
