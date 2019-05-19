@@ -55,20 +55,21 @@ var totalSeconds = 0;
 setInterval(setTime, 1000);
 
 function setTime() {
-  ++totalSeconds;
-  secondsLabel.innerHTML = pad(totalSeconds % 60);
-  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
 }
 
 function pad(val) {
-  var valString = val + "";
-  if (valString.length < 2) {
-    return "0" + valString;
-  } else {
-    return valString;
-  }
+    var valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
 }
 
+//setTime should be here
 allCards.forEach(function(card) {
     card.addEventListener('click', function() {
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
@@ -95,7 +96,7 @@ allCards.forEach(function(card) {
                     }, 1000);
                 }
                 moves += 1;
-                //moveCounter.innerText = moves;
+                moveCounter.innerHTML = moves;
             }
         }
     });
