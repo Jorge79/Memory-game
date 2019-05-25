@@ -4,8 +4,9 @@ var movements;
 var minutesLabel;
 var secondsLabel;
 var totalSeconds;
-var matchedCards;
+var matchedCards = 0;
 var interval;
+let isTimerStarted = false;
 
 var cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube',
@@ -13,7 +14,7 @@ var cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o',
             ];
 
 function generateCard(card) {
-    return `<li class="card"><i class="fa ${card}"> </i> </li>`;
+    return `<li class="card" data-card="${card}"><i class="fa ${card}"> </i> </li>`;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -58,7 +59,7 @@ function initGame() {
 
 initGame();
 
-function setTime() {
+function setTime() { //Function got in StackOverflow
     ++totalSeconds;
     secondsLabel.innerHTML = pad(totalSeconds % 60);
     minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
@@ -76,8 +77,12 @@ function pad(val) {
 function restart() {
     allCards.forEach(function(card) {
         card.addEventListener('click', function() {
-            if (openCards[0] == openCards[1]) {
+            console.log("matchedCards: ", matchedCards);
+            if (isTimerStarted == false) {
                 interval = setInterval(setTime, 1000);
+                isTimerStarted = true;
+            }
+            if (openCards[0] == openCards[1]) {
             }
             if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
                 openCards.push(card);
@@ -99,8 +104,10 @@ function restart() {
                             setTimeout(() => {
                                 alert("Congratulations!!");
                                 clearInterval(interval);
-                                initGame()
-                            },1000);
+                                initGame();
+                                isTimerStarted = false;
+                                totalSeconds = 0;
+                            }, 0);
                         }
                     }
                     else {
@@ -117,18 +124,18 @@ function restart() {
                         document.getElementById("star1").className ="fa fa-star";
                         document.getElementById("star2").className ="fa fa-star";
                         document.getElementById("star3").className ="fa fa-star";
-                    } else if(movements <= 14){
+                    } else if(movements > 10 && movements <= 14){
                         document.getElementById("star1").className ="fa fa-star";
+                        document.getElementById("star2").className ="fa fa-star";
+                        document.getElementById("star3").className ="far fa-star";
+                    } else if(movements > 14 && movements <= 18){
                         document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star1").className ="far fa-star";
-                    } else if(movements <= 18){
-                        document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star1").className ="far fa-star";
-                        document.getElementById("star1").className ="far fa-star";
+                        document.getElementById("star2").className ="far fa-star";
+                        document.getElementById("star3").className ="far fa-star";
                     }else{
                         document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star1").className ="far fa-star";
+                        document.getElementById("star2").className ="fa fa-star";
+                        document.getElementById("star3").className ="far fa-star";
                     }
                 }
             }
