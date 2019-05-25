@@ -48,6 +48,8 @@ function initGame() {
 
     minutesLabel = document.getElementById("minutes");
     secondsLabel = document.getElementById("seconds");
+    secondsLabel.innerHTML = "00";
+    minutesLabel.innerHTML = "00";
     totalSeconds = 0;
     document.getElementById("star1").className = "fa fa-star";
     document.getElementById("star2").className = "fa fa-star";
@@ -82,8 +84,6 @@ function restart() {
                 interval = setInterval(setTime, 1000);
                 isTimerStarted = true;
             }
-            if (openCards[0] == openCards[1]) {
-            }
             if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
                 openCards.push(card);
                 card.classList.add('open', 'show');
@@ -102,12 +102,11 @@ function restart() {
                         matchedCards++;
                         if (matchedCards == 8) {
                             setTimeout(() => {
-                                alert("Congratulations!!");
+                                alert("Congratulations!! You fin");
                                 clearInterval(interval);
-                                initGame();
                                 isTimerStarted = false;
-                                totalSeconds = 0;
-                            }, 0);
+                                initGame();
+                            }, 300);
                         }
                     }
                     else {
@@ -120,10 +119,8 @@ function restart() {
                     }
                     movements++;
                     moves.innerHTML=movements;
-                    if(movements <= 10) {
-                        document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star2").className ="fa fa-star";
-                        document.getElementById("star3").className ="fa fa-star";
+                    if(movements > 2) {
+                        document.getElementById("star3").classList.remove("fa fa-star");
                     } else if(movements > 10 && movements <= 14){
                         document.getElementById("star1").className ="fa fa-star";
                         document.getElementById("star2").className ="fa fa-star";
@@ -132,7 +129,7 @@ function restart() {
                         document.getElementById("star1").className ="fa fa-star";
                         document.getElementById("star2").className ="far fa-star";
                         document.getElementById("star3").className ="far fa-star";
-                    }else{
+                    } else {
                         document.getElementById("star1").className ="fa fa-star";
                         document.getElementById("star2").className ="fa fa-star";
                         document.getElementById("star3").className ="far fa-star";
