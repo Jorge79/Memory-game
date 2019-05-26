@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+
 html {
     box-sizing: border-box;
 }
@@ -29,7 +31,8 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans";
+    font-weight: bolder;
     font-weight: 300;
 }
 
@@ -115,4 +118,11 @@ h1 {
 
 .score-panel .timer {
     float: right;
+}
+
+@media only screen and (max-width: 560px) {            /*Mobile device responsiveness*/
+    .deck{
+        margin-left: 90px;
+        margin-right: 90px;
+    }
 }

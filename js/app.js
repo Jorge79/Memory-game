@@ -102,7 +102,7 @@ function restart() {
                         matchedCards++;
                         if (matchedCards == 8) {
                             setTimeout(() => {
-                                alert("Congratulations!! You fin");
+                                alert("Congratulations!! You finished the game with: ");
                                 clearInterval(interval);
                                 isTimerStarted = false;
                                 initGame();
