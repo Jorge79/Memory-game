@@ -1,5 +1,3 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans);
-
 html {
     box-sizing: border-box;
 }
@@ -16,11 +14,6 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
 }
 
 .container {
