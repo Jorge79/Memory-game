@@ -40,7 +40,7 @@ function initGame() {
 
     deck.innerHTML = cardHTML.join('');
     allCards = document.querySelectorAll('.card');
-    restart();
+    newGame();
     openCards = [];
     movements = 0;
     moves = document.getElementById("moves");
@@ -76,7 +76,9 @@ function pad(val) {
     }
 }
 
-function restart() {
+document.getElementsByClassName("fas fa-redo-alt").addEventListener("click", initGame); //Restart button
+
+function newGame() {
     allCards.forEach(function(card) {
         card.addEventListener('click', function() {
             console.log("matchedCards: ", matchedCards);
