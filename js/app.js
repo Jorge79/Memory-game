@@ -76,7 +76,7 @@ function pad(val) {
     }
 }
 
-document.getElementsByClassName("fas fa-redo-alt").addEventListener("click", initGame); //Restart button
+document.querySelector(".restart").addEventListener("click", initGame); //Restart button
 
 function newGame() {
     allCards.forEach(function(card) {
@@ -121,20 +121,10 @@ function newGame() {
                     }
                     movements++;
                     moves.innerHTML=movements;
-                    if(movements > 2) {
-                        document.getElementById("star3").classList.remove("fa fa-star");
-                    } else if(movements > 10 && movements <= 14){
-                        document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star2").className ="fa fa-star";
-                        document.getElementById("star3").className ="far fa-star";
-                    } else if(movements > 14 && movements <= 18){
-                        document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star2").className ="far fa-star";
-                        document.getElementById("star3").className ="far fa-star";
-                    } else {
-                        document.getElementById("star1").className ="fa fa-star";
-                        document.getElementById("star2").className ="fa fa-star";
-                        document.getElementById("star3").className ="far fa-star";
+                    if(movements > 10 && movements <= 15) {
+                        document.getElementById("star3").classList.remove("fa-star");
+                    } else if(movements > 15 && movements <= 20){
+                        document.getElementById("star2").classList.remove("fa-star");
                     }
                 }
             }
