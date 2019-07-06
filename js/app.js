@@ -81,13 +81,16 @@ document.querySelector(".restart").addEventListener("click", initGame); //Restar
 function newGame() {
     allCards.forEach(function(card) {
         card.addEventListener('click', function() {
-            console.log("matchedCards: ", matchedCards);
             if (isTimerStarted == false) {
                 interval = setInterval(setTime, 1000);
                 isTimerStarted = true;
             }
             if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
-                openCards.push(card);
+                if(openCards.length < 2) {
+                    openCards.push(card);
+                } else {
+                    return;
+                }
                 card.classList.add('open', 'show');
 
                 if (openCards.length == 2) { //Two cards open
@@ -104,10 +107,25 @@ function newGame() {
                         matchedCards++;
                         if (matchedCards == 8) {
                             setTimeout(() => {
-                                alert("Congratulations!! You finished the game with: ");
-                                clearInterval(interval);
-                                isTimerStarted = false;
-                                initGame();
+                                var modal = document.getElementById("myModal");
+
+                                // Get the <span> element that closes the modal
+                                var span = document.getElementsByClassName("close")[0];
+                                
+                                // When the user clicks the button, open the modal 
+                                modal.style.display = "block";
+                                
+                                // When the user clicks on <span> (x), close the modal
+                                span.onclick = function() {
+                                  modal.style.display = "none";
+                                }
+                                
+                                // When the user clicks anywhere outside of the modal, close it
+                                window.onclick = function(event) {
+                                  if (event.target == modal) {
+                                    modal.style.display = "none";
+                                  }//parar o tempo, mostrar os movementos e as estrelas,
+                                }
                             }, 300);
                         }
                     }
