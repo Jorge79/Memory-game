@@ -55,7 +55,7 @@ function initGame() {
     document.getElementById("star2").className = "fa fa-star";
     document.getElementById("star3").className = "fa fa-star";
 
-    matchCards =0;
+    matchCards = 0;
     first = true;
 }
 
