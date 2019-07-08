@@ -11,7 +11,8 @@ var matchedCards = 0;
 var interval;
 let isTimerStarted = false;
 var starCount = 3;
-var starModal = 0;
+var starModal;
+var buttonModal;
 
 var cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube',
@@ -48,7 +49,7 @@ function initGame() {
     newGame();
     openCards = [];
 
-    starCount = document.getElementById("star-modal")
+    starModal = document.getElementById("star-modal")
     movesModal = document.getElementById("moves-modal");
     movements = 0;
     moves = document.getElementById("moves");
@@ -91,6 +92,7 @@ function stopTime() {
     clearInterval(interval);
 }
 
+document.querySelector("#button-modal").addEventListener("click", initGame);
 document.querySelector(".restart").addEventListener("click", initGame); //Restart button
 
 function newGame() {
@@ -146,6 +148,7 @@ function newGame() {
                             stopTime();
                             secondsModal.innerHTML = secondsLabel.innerHTML;
                             minutesModal.innerHTML = minutesLabel.innerHTML;
+
                         }
                     }
                     else {
@@ -166,7 +169,7 @@ function newGame() {
                         document.getElementById("star2").classList.remove("fa-star");
                         starCount = 1;
                     }
-                    starCount.innerHTML = starCount;
+                    starModal.innerHTML = starCount;
                 }
             }
         });
