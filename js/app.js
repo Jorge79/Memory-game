@@ -92,7 +92,7 @@ function stopTime() {
     clearInterval(interval);
 }
 
-document.querySelector("#button-modal").addEventListener("click", initGame);
+document.querySelector("#button-modal").addEventListener("click", initGame);  //Restart modal button
 document.querySelector(".restart").addEventListener("click", initGame); //Restart button
 
 function newGame() {
