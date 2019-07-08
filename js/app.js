@@ -158,7 +158,7 @@ function newGame() {
                     }
                     movements++;
                     moves.innerHTML = movements;
-                    
+
                     if(movements > 10 && movements <= 15) {
                         document.getElementById("star3").classList.remove("fa-star");
                         starCount = 2;
