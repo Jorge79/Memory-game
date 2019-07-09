@@ -11,7 +11,12 @@ var matchedCards = 0;
 var interval;
 let isTimerStarted = false;
 var starCount = 3;
+<<<<<<< HEAD
 var starModal = 0;
+=======
+var starModal;
+var buttonModal;
+>>>>>>> 0bcc40cdc8bde680d88bf7dabbe780c8c262d588
 
 var cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube',
@@ -48,7 +53,11 @@ function initGame() {
     newGame();
     openCards = [];
 
+<<<<<<< HEAD
     starCount = document.getElementById("star-modal")
+=======
+    starModal = document.getElementById("star-modal")
+>>>>>>> 0bcc40cdc8bde680d88bf7dabbe780c8c262d588
     movesModal = document.getElementById("moves-modal");
     movements = 0;
     moves = document.getElementById("moves");
@@ -91,6 +100,10 @@ function stopTime() {
     clearInterval(interval);
 }
 
+<<<<<<< HEAD
+=======
+document.querySelector("#button-modal").addEventListener("click", initGame);  //Restart modal button
+>>>>>>> 0bcc40cdc8bde680d88bf7dabbe780c8c262d588
 document.querySelector(".restart").addEventListener("click", initGame); //Restart button
 
 function newGame() {
@@ -138,17 +151,17 @@ function newGame() {
                                 
                                 // When the user clicks anywhere outside of the modal, close it
                                 window.onclick = function(event) {
-                                  if (event.target == modal) {
-                                    modal.style.display = "none";
-                                  }//parar o tempo, mostrar os movementos e as estrelas,
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
                                 }
+                                isTimerStarted = false;
                             }, 300);
                             stopTime();
                             secondsModal.innerHTML = secondsLabel.innerHTML;
                             minutesModal.innerHTML = minutesLabel.innerHTML;
                         }
-                    }
-                    else {
+                    } else {
                         setTimeout(function() {
                             openCards.forEach(function(card) {
                                 card.classList.remove('open', 'show');
@@ -166,7 +179,11 @@ function newGame() {
                         document.getElementById("star2").classList.remove("fa-star");
                         starCount = 1;
                     }
+<<<<<<< HEAD
                     starCount.innerHTML = starCount;
+=======
+                    starModal.innerHTML = starCount;
+>>>>>>> 0bcc40cdc8bde680d88bf7dabbe780c8c262d588
                 }
             }
         });
