@@ -144,11 +144,11 @@ function newGame() {
                                     modal.style.display = "none";
                                   }//parar o tempo, mostrar os movementos e as estrelas,
                                 }
+                                isTimerStarted = false;
                             }, 300);
                             stopTime();
                             secondsModal.innerHTML = secondsLabel.innerHTML;
                             minutesModal.innerHTML = minutesLabel.innerHTML;
-
                         }
                     }
                     else {
