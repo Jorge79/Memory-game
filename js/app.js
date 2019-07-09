@@ -1,12 +1,18 @@
+var movesModal;
 var moves = 0;
 var allCards;
 var movements;
 var minutesLabel;
 var secondsLabel;
 var totalSeconds;
+var minutesModal;
+var secondsModal;
 var matchedCards = 0;
 var interval;
 let isTimerStarted = false;
+var starCount = 3;
+var starModal;
+var buttonModal;
 
 var cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube',
@@ -42,20 +48,26 @@ function initGame() {
     allCards = document.querySelectorAll('.card');
     newGame();
     openCards = [];
+
+    starModal = document.getElementById("star-modal")
+    movesModal = document.getElementById("moves-modal");
     movements = 0;
     moves = document.getElementById("moves");
     moves.innerHTML= movements;
 
+    minutesModal = document.getElementById("minutes-modal");
+    secondsModal = document.getElementById("seconds-modal");
     minutesLabel = document.getElementById("minutes");
     secondsLabel = document.getElementById("seconds");
     secondsLabel.innerHTML = "00";
     minutesLabel.innerHTML = "00";
     totalSeconds = 0;
+
     document.getElementById("star1").className = "fa fa-star";
     document.getElementById("star2").className = "fa fa-star";
     document.getElementById("star3").className = "fa fa-star";
 
-    matchCards =0;
+    matchCards = 0;
     first = true;
 }
 
@@ -76,6 +88,11 @@ function pad(val) {
     }
 }
 
+function stopTime() {
+    clearInterval(interval);
+}
+
+document.querySelector("#button-modal").addEventListener("click", initGame);  //Restart modal button
 document.querySelector(".restart").addEventListener("click", initGame); //Restart button
 
 function newGame() {
@@ -108,6 +125,7 @@ function newGame() {
                         if (matchedCards == 8) {
                             setTimeout(() => {
                                 var modal = document.getElementById("myModal");
+                                movesModal.innerHTML = movements;
 
                                 // Get the <span> element that closes the modal
                                 var span = document.getElementsByClassName("close")[0];
@@ -127,6 +145,11 @@ function newGame() {
                                   }//parar o tempo, mostrar os movementos e as estrelas,
                                 }
                             }, 300);
+                            stopTime();
+                            secondsModal.innerHTML = secondsLabel.innerHTML;
+                            minutesModal.innerHTML = minutesLabel.innerHTML;
+                            isTimerStarted = false;
+                            matchedCards = 0;
                         }
                     }
                     else {
@@ -138,12 +161,16 @@ function newGame() {
                         }, 1000);
                     }
                     movements++;
-                    moves.innerHTML=movements;
+                    moves.innerHTML = movements;
+
                     if(movements > 10 && movements <= 15) {
                         document.getElementById("star3").classList.remove("fa-star");
+                        starCount = 2;
                     } else if(movements > 15 && movements <= 20){
                         document.getElementById("star2").classList.remove("fa-star");
+                        starCount = 1;
                     }
+                    starModal.innerHTML = starCount;
                 }
             }
         });
