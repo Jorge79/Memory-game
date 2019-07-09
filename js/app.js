@@ -140,9 +140,9 @@ function newGame() {
                                 
                                 // When the user clicks anywhere outside of the modal, close it
                                 window.onclick = function(event) {
-                                  if (event.target == modal) {
-                                    modal.style.display = "none";
-                                  }//parar o tempo, mostrar os movementos e as estrelas,
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
                                 }
                                 isTimerStarted = false;
                             }, 300);
@@ -150,8 +150,7 @@ function newGame() {
                             secondsModal.innerHTML = secondsLabel.innerHTML;
                             minutesModal.innerHTML = minutesLabel.innerHTML;
                         }
-                    }
-                    else {
+                    } else {
                         setTimeout(function() {
                             openCards.forEach(function(card) {
                                 card.classList.remove('open', 'show');
